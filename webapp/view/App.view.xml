@@ -57,7 +57,7 @@
 
                                 </columns>
                                 <items>
-                                    <ColumnListItem press="onMessage" type="Active">
+                                    <ColumnListItem press="onShowOrders" type="Active">
                                         <cells>
                                         <ObjectIdentifier title="{jsonEmployees>EmployeeID}"/>
                                         <Text text="{jsonEmployees>FirstName} {jsonEmployees>LastName}"/>
@@ -67,6 +67,7 @@
                                     </ColumnListItem>                                    
                                 </items>
                             </Table>
+                            <HBox id="OrderTable"/>
                             </content>
                         </Panel>
                     </HBox>
