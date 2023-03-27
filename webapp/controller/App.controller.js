@@ -239,7 +239,28 @@ sap.ui.define([
              
             oOrderTable.addItem(oNewTable);
 
-            }
+            },
 
+            onOpenDialog: function(oEvent)
+            {
+                let oItem = oEvent.getSource(),
+                    oBindingContext = oItem.getBindingContext("jsonEmployees");
+
+                if(!this.pDialogOrder){
+                    this.pDialogOrder = sap.ui.xmlfragment("employees.fragment.DialogOrders",this);
+                    this.getView().addDependent(this.pDialogOrder);                
+                }
+
+                this.pDialogOrder.bindElement("jsonEmployees>" + oBindingContext.getPath());
+                this.pDialogOrder.open();
+
+
+            },
+
+            onCloseDialogOrders: function()
+            {
+                this.pDialogOrder.close();
+            },
+            
         });
     });

@@ -39,37 +39,7 @@
                          </HBox>
 
                      <HBox>
-                        <Panel>
-                            <content>   
-                            <Button id="btnShowCity" class = "sapUiSmallMarginEnd" 
-                            text="Show City" press="onShowCity" visible="{jsonConfig>/visibleBtnShowCity}"/>
-
-                            <Button id="btnHideCity" class = "sapUiSmallMarginEnd" 
-                            text="Hide City" press="onHideCity" visible="{jsonConfig>/visibleBtnHideCity}"/>
-
-                            <Table id="tableEmployee" items="{jsonEmployees>/Employees}"
-                            headerText="Employees:({jsonEmployees>/Amount})">
-                                <columns>
-                                    <Column visible="{jsonConfig>/visibleID}"><Text text="{i18n>TableId}"/></Column>
-                                    <Column visible="{jsonConfig>/visibleName}"><Text text="{i18n>TableName}"/></Column>
-                                    <Column visible="{jsonConfig>/visibleCountry}"><Text text="{i18n>TableCountry}"/></Column>
-                                    <Column visible="{jsonConfig>/visibleCity}"><Text text="{i18n>TableCity}"/></Column>
-
-                                </columns>
-                                <items>
-                                    <ColumnListItem press="onShowOrders" type="Active">
-                                        <cells>
-                                        <ObjectIdentifier title="{jsonEmployees>EmployeeID}"/>
-                                        <Text text="{jsonEmployees>FirstName} {jsonEmployees>LastName}"/>
-                                        <Text text="{jsonEmployees>Country}"/>
-                                        <Text text="{jsonEmployees>City}"/>
-                                        </cells>
-                                    </ColumnListItem>                                    
-                                </items>
-                            </Table>
-                            <HBox id="OrderTable"/>
-                            </content>
-                        </Panel>
+                        <core:Fragment fragmentName="employees.fragment.TableEmployee" />
                     </HBox>
                     </content>
                 </Page>

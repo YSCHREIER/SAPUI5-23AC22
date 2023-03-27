@@ -1,0 +1,40 @@
+<core:FragmentDefinition
+xmlns="sap.m"
+xmlns:core="sap.ui.core">
+
+<Panel>
+                            <content>   
+                            <Button id="btnShowCity" class = "sapUiSmallMarginEnd" 
+                            text="Show City" press="onShowCity" visible="{jsonConfig>/visibleBtnShowCity}"/>
+
+                            <Button id="btnHideCity" class = "sapUiSmallMarginEnd" 
+                            text="Hide City" press="onHideCity" visible="{jsonConfig>/visibleBtnHideCity}"/>
+
+                            <Table id="tableEmployee" items="{jsonEmployees>/Employees}"
+                            headerText="Employees:({jsonEmployees>/Amount})">
+                                <columns>
+                                    <Column visible="{jsonConfig>/visibleID}"><Text text="{i18n>TableId}"/></Column>
+                                    <Column visible="{jsonConfig>/visibleName}"><Text text="{i18n>TableName}"/></Column>
+                                    <Column visible="{jsonConfig>/visibleCountry}"><Text text="{i18n>TableCountry}"/></Column>
+                                    <Column visible="{jsonConfig>/visibleCity}"><Text text="{i18n>TableCity}"/></Column>
+
+                                    <Column><Label text="{i18n>TableShowDetail}"/></Column>
+
+                                </columns>
+                                <items>
+                                    <ColumnListItem >
+                                        <cells>
+                                        <ObjectIdentifier title="{jsonEmployees>EmployeeID}"/>
+                                        <Text text="{jsonEmployees>FirstName} {jsonEmployees>LastName}"/>
+                                        <Text text="{jsonEmployees>Country}"/>
+                                        <Text text="{jsonEmployees>City}"/>
+                                        <core:Icon src="sap-icon://show" press="onOpenDialog" />
+                                        </cells>
+                                    </ColumnListItem>                                    
+                                </items>
+                            </Table>
+                            <HBox id="OrderTable"/>
+                            </content>
+                        </Panel>
+
+</core:FragmentDefinition>
