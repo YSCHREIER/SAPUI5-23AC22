@@ -10,20 +10,66 @@
             <pages>
                 <Page id="page" title="{i18n>tituloEmployee}">
                     <content>
+                    <HBox>
                         <Label id="lblEmployee" text = "{i18n>labelEmployee}" class="sapUiSmallMargin"/>
 
                         <Input id="inputEmployee" class="sapUiSmallMarginEnd" maxLength="6" width="200px" 
-                        liveChange = "onLiveChangeInputEmployee"/>
+                         value="{jsonCountries>/EmployeeId}"/>
 
                         <Label id="lblCountry" text = "{i18n>labelCountry}" visible="false" class="sapUiSmallMargin"/>
 
-                        <Select id="selectCountry" visible="false">
+                        <Select id="selectCountry" 
+                        items="{jsonCountries>/ListCountry}"
+                        selectedKey="{jsonCountries>/CountryKey}"
+                        forceSelection="false"
+                        visible="true"        
+                        >
                         <items>
-                            <core:Item key="US" text="{i18n>countryUS}" />
-                            <core:Item key="UK" text="{i18n>countryUK}" />
-                            <core:Item key="ES" text="{i18n>countryES}" />
+                            <core:Item key="{jsonCountries>Key}" text="{jsonCountries>Text}" />                            
                         </items>
                         </Select>
+
+                        <Button id="buttonSearch" class = "sapUiSmallMarginEnd" 
+                        icon="sap-icon://search" press="onFilter"/>
+
+                        <Button id="buttonClear" class = "sapUiSmallMarginEnd" 
+                        icon="sap-icon://clear-filter" press="onClearFilter"/>
+
+
+                         </HBox>
+
+                     <HBox>
+                        <Panel>
+                            <content>   
+                            <Button id="btnShowCity" class = "sapUiSmallMarginEnd" 
+                            text="Show City" press="onShowCity" visible="{jsonConfig>/visibleBtnShowCity}"/>
+
+                            <Button id="btnHideCity" class = "sapUiSmallMarginEnd" 
+                            text="Hide City" press="onHideCity" visible="{jsonConfig>/visibleBtnHideCity}"/>
+
+                            <Table id="tableEmployee" items="{jsonEmployees>/Employees}"
+                            headerText="Employees:({jsonEmployees>/Amount})">
+                                <columns>
+                                    <Column visible="{jsonConfig>/visibleID}"><Text text="{i18n>TableId}"/></Column>
+                                    <Column visible="{jsonConfig>/visibleName}"><Text text="{i18n>TableName}"/></Column>
+                                    <Column visible="{jsonConfig>/visibleCountry}"><Text text="{i18n>TableCountry}"/></Column>
+                                    <Column visible="{jsonConfig>/visibleCity}"><Text text="{i18n>TableCity}"/></Column>
+
+                                </columns>
+                                <items>
+                                    <ColumnListItem press="onMessage" type="Active">
+                                        <cells>
+                                        <ObjectIdentifier title="{jsonEmployees>EmployeeID}"/>
+                                        <Text text="{jsonEmployees>FirstName} {jsonEmployees>LastName}"/>
+                                        <Text text="{jsonEmployees>Country}"/>
+                                        <Text text="{jsonEmployees>City}"/>
+                                        </cells>
+                                    </ColumnListItem>                                    
+                                </items>
+                            </Table>
+                            </content>
+                        </Panel>
+                    </HBox>
                     </content>
                 </Page>
             </pages>            
